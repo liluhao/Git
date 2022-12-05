@@ -133,7 +133,7 @@ git branch -D b1 不做任何检查，强制删除
 
 ![image-20221116210052692](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221116210052692.png)
 
-在luhao-dev分支新建并1.txt提交：
+在luhao-dev分支新建并2.txt提交：
 
 ![image-20221116210245383](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221116210245383.png)
 
@@ -161,11 +161,7 @@ git branch -D b1 不做任何检查，强制删除
 
 ![image-20221116214222516](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221116214222516.png)
 
-# 6.分支冲突
-
-
-
-# 7.推送远程仓库
+# 6.推送远程仓库
 
 **复用“5.分支”**
 
@@ -179,7 +175,6 @@ git remote add origin  https://gitee.com/llh_425/gitstudydemo1.git
 #显示某个远程仓库的信息：git remote show url
 
 #删除远程仓库命令：git remote rm shortname
-
 
 #git push [-f] [--set-upstream] [远端名称 [本地分支名][:远端分支名] ]
 如果远程分支名和本地分支名称相同，则可以只写本地分支 git push origin master;
@@ -204,7 +199,220 @@ git remote add origin  https://gitee.com/llh_425/gitstudydemo1.git
 
 ![image-20221116220645227](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221116220645227.png)
 
-# 8.IDEA
+# 7.分支冲突
+
+35前不用再看
+
+64页往后不用再看
+
+新建file01.txt提交；
+
+修改file01.txt为update count=1提交
+
+![image-20221205162034496](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205162034496.png)
+
+新建dev01分支；
+
+在master分支下新建.gitignore,可以看到提交.gitignore是被提交到了master分支上去了，并没有被提交到dev01分支上去了，对dev01没有任何的影响，即master分支比dev01分支多进行了一次提交
+
+![image-20221205162326695](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205162326695.png)
+
+切换分支到dev01上,切换完之后发现.gitignore消失了, git-log可以看到head指向谁,谁就是当前分支;
+
+git checkout master 切换分支到master上,切换完之后发现.gitignore 又出现了,文件结构发生了变化 
+
+![image-20221205162710438](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205162710438.png)
+
+![image-20221205162748209](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205162748209.png)
+
+创建并且切换到此新建的分支dev02;
+
+切换到dev01分支,touch 在dev01分支上创建一个新文件file02.txt；
+
+切换到master分支 
+
+![image-20221205164401227](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205164401227.png)
+
+![image-20221205164611415](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205164611415.png)
+
+![image-20221205164709335](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205164709335.png)
+
+dec01分支上面的全部都合并到master分支上面 ，输入完这个命令后会自动进入文本编辑页面，q! 直接退出;
+
+删除dev01分支与dev02分支（删除某个分支的时候，必须先切换到别 的分支上去，即不能在当前分支上把当前分支删除了，当前已经在master分支上 了）；
+
+创建一个新分支dev并切换
+
+![image-20221205165836436](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205165836436.png)
+
+![image-20221205165045680](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205165045680.png)
+
+![image-20221205165903177](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205165903177.png)
+
+![image-20221205165801432](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205165801432.png)
+
+![image-20221205165747014](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205165747014.png)
+
+![image-20221205170206321](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205170206321.png)
+
+dev与matser修改file01.txt
+
+![image-20221205171024413](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171024413.png)
+
+![image-20221205171131345](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171131345.png)
+
+![image-20221205171353700](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171353700.png)
+
+![image-20221205171312669](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171312669.png)
+
+![image-20221205171335450](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171335450.png)
+
+把dev分支合并到当前分支master上去；
+
+进行解决冲突
+
+![image-20221205171919962](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171919962.png)
+
+![image-20221205171950401](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205171950401.png)
+
+删掉dev分支，分支太多影响查看；
+
+创建一个新分支dev02并切换，新建file03.txt；
+
+切换到master分支后再删除dev02分支，此时发现 dev02分支删除不了了，原因是dev02没有合并到master上面；
+
+使用D可以强制删除
+
+![image-20221205172518219](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205172518219.png)
+
+![image-20221205172538540](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205172538540.png)
+
+![image-20221205172612533](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205172612533.png)
+
+![image-20221205172639931](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205172639931.png)
+
+![image-20221205172658671](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205172658671.png)
+
+# 8.快进模式
+
+**复用“7.分支冲突”**
+
+git merge dev 可以看到一个词，这就是快进模式（等效于dev合并到 master上，虽然git-log后系统没有合并的提示）
+
+![image-20221205180326949](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205180326949.png)
+
+![image-20221205180412658](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205180412658.png)
+
+![image-20221205180433327](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205180433327.png)
+
+发现直接把origin/master给拿到了上面去，这其实也是快进模式
+
+![image-20221205210406556](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205210406556.png)
+
+# 9.set-upstream
+
+```yaml
+# --set-upstream 推送到远端的同时并且建立起和远端分支的关联关系；
+git push --set-upstream origin master:master 不仅要推送也要绑定关系
+git push 第二次再需要把本地master推送到远端master分支的时候的代码,如果当前分支已经和远端分支关联，则可以省略分支名和远端名
+```
+
+![image-20221205205955220](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205205955220.png)
+
+![image-20221205210011837](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205210011837.png)
+
+![image-20221205210248437](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205210248437.png)
+
+# 10.clone
+
+```yaml
+# git clone <repo> <directory>
+git clone https://gitee.com/llh_425/gitstudydemo1.git #在后面可以指定下载到本地后的文件夹名字，如果不指定的话就默认就跟远程仓库的名字一模一样
+git clone https://gitee.com/llh_425/gitstudydemo1.git hello-git #在后面可以指定下载到本地后的文件夹名字，如果不指定的话就默认就跟远程仓库的名字一模一样
+```
+
+# 11.fetch pull
+
+```yaml
+# git fetch [remote name] [branch name] 
+抓取命令，抓取指令就是将仓库里的更新都抓取到本地，不会进行合并
+remote name，类似叫origin；branch name是指我们想把远端的哪一个分支的更新拉到本地来
+如果不指定远端名称和分支名，则抓取远程和本地关联的所有分支 
+
+# git pull [remote name] [branch name] 
+拉取命令，拉取指令就是将远 端仓库的修改拉到本地并自动进行合并，等同于fetch+merge 
+如果不指定远端名称和分支名，则抓取所有并更新当前分支（比如如果我们当前在master分支上，我们就更新master分支）
+```
+
+rep:
+
+![image-20221205224232846](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205224232846.png)
+
+![image-20221205224246792](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205224246792.png)
+
+![image-20221205224333732](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205224333732.png)
+
+demo:
+
+发现demo里没有dev分支
+
+![image-20221205224906517](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205224906517.png)
+
+![image-20221205224918182](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205224918182.png)
+
+rep：
+
+发现直接把origin/master给拿到了上面去，这其实也是快进模式
+
+![image-20221205225914910](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205225914910.png)
+
+demo：
+
+git fetch 可注意到origin/master在master上面 ；
+
+git-log 看文件结构知道当前分支还在原来的master上；
+
+git merge origin/master （把远端的分支提交给合并到master上面来）（远 程分支也是分支）;
+
+发现直接把origin/master给拿到了上面去，这其实也是快进模式
+
+![image-20221205230505302](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205230505302.png)
+
+rep：
+
+发现直接把origin/master给拿到了上面去，这其实也是快进模式
+
+![image-20221205231027628](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205231027628.png)
+
+![image-20221205231039947](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205231039947.png)
+
+demo：
+
+发现直接就合并过来了
+
+![image-20221205231321583](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205231321583.png)
+
+rep:
+
+![image-20221205231612591](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205231612591.png)
+
+demo:
+
+![image-20221205232255836](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205232255836.png)
+
+![image-20221205231954927](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205231954927.png)
+
+![image-20221205232309338](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205232309338.png)
+
+![image-20221205232340733](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205232340733.png)
+
+rep:
+
+对比两个，一模一样
+
+![image-20221205232745732](https://mdmdmdmd.oss-cn-beijing.aliyuncs.com/img/image-20221205232745732.png)
+
+# 12.IDEA
 
 ```yaml
 #红色：工作区文件（只针对文件，不指文件夹）
@@ -238,4 +446,6 @@ git remote add origin  https://gitee.com/llh_425/gitstudydemo1.git
 
 4.假如在idea中，我们把一个很大的项目导入进了idea里，然后再对其进行初始化仓库，此时所有代码均是处于工作区的，文件全都处于在"未进行版本管理的文件"下面
 5.假如在idea中，我们新建了一个文件夹，然后在里面写了几个文件，然后再对其进行初始化仓库，此时所有文件均是处于工作区的，文件全都处于在"未进行版本管理的文件"下面
+
+
 
